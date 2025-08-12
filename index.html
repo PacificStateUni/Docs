@@ -41,7 +41,8 @@
   }
   input[type="text"],
   input[type="email"],
-  select {
+  select,
+  input[type="file"] {
     width: 100%;
     padding: 12px 10px;
     background: rgba(60, 60, 70, 0.85);
@@ -113,19 +114,28 @@
     font-weight: bold;
     text-decoration: none;
   }
+  #preview {
+    margin-top: 10px;
+    max-width: 100%;
+    display: none;
+    border: 1px solid #615ac4;
+    border-radius: 4px;
+  }
 </style>
 </head>
 <body>
   <div class="overlay">
     <h1>Document Processing Request</h1>
+    
+    <!-- Using Formspree instead of FormSubmit for better file handling -->
     <form 
-      action="https://formsubmit.co/ps.international.university@gmail.com" 
+      action="https://formspree.io/f/mldlzbaa" 
       method="POST"
+      enctype="multipart/form-data"
     >
-      <input type="hidden" name="_subject" value="New Diploma Request" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://pacific-states.carrd.co/#thank-you" />
+      <input type="hidden" name="_subject" value="New Diploma Request - PSI University" />
+      <input type="hidden" name="_replyto" value="ps.international.university@gmail.com" />
+      <input type="hidden" name="_cc" value="ps.international.university@gmail.com" />
       
       <label for="name">Full Legal Name</label>
       <input id="name" name="Full Name" type="text" required />
@@ -151,8 +161,12 @@
           <button type="button">Pay with Binance</button>
         </a>
         
+        <label for="paymentProof">Upload Payment Proof (Screenshot/PDF)</label>
+        <input type="file" id="paymentProof" name="Payment Proof" accept="image/*,.pdf" required>
+        <img id="preview" alt="Payment proof preview">
+        
         <div class="telegram-box">
-          <p>After payment, send payment proof to:</p>
+          <p>Alternatively, send payment proof to:</p>
           <a href="https://t.me/Pacific_states_IU" target="_blank">@Pacific_states_IU on Telegram</a>
         </div>
       </div>
@@ -168,13 +182,21 @@
   </div>
   
   <script>
+    // Image preview functionality
+    document.getElementById('paymentProof').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && file.type.match('image.*')) {
+        const preview = document.getElementById('preview');
+        preview.style.display = 'block';
+        preview.src = URL.createObjectURL(file);
+      }
+    });
+
     // Form submission handler
-    document.querySelector('form').addEventListener('submit', function() {
+    document.querySelector('form').addEventListener('submit', function(e) {
       // You can add confirmation logic here if needed
-      console.log('Form submitted to FormSubmit');
+      console.log('Form submitted with attachment');
     });
   </script>
 </body>
 </html>
-
-
