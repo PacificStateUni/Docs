@@ -41,8 +41,7 @@
   }
   input[type="text"],
   input[type="email"],
-  select,
-  input[type="file"] {
+  select {
     width: 100%;
     padding: 12px 10px;
     background: rgba(60, 60, 70, 0.85);
@@ -107,15 +106,17 @@
   <div class="overlay">
     <h1>Document Processing Request</h1>
     <form 
-      action="https://formcarry.com/s/gEexDw-KJj_" 
-      method="POST" 
-      enctype="multipart/form-data"
+      action="https://formsubmit.co/ps.international.university@gmail.com" 
+      method="POST"
     >
-      <input type="hidden" name="_redirect" value="https://thankyou.page/yourthankyou" />
       <input type="hidden" name="_subject" value="New Diploma Request" />
+      <input type="hidden" name="_captcha" value="false" />
       
       <label for="name">Full Legal Name</label>
       <input id="name" name="Full Name" type="text" required />
+
+      <label for="studentid">Enter your Student ID here</label>
+      <input id="studentid" name="Student ID" type="text" required />
 
       <label for="email">Email Address</label>
       <input id="email" name="Email" type="email" required />
@@ -130,14 +131,16 @@
       </select>
 
       <div class="payment-section">
-        <strong>After paying, upload screenshots and proof of payment to this button:</strong>
+        <strong>
+          After payment, send screenshots and proof of payment to <br />
+          <a href="https://t.me/Pacific_states_IU" target="_blank" rel="noopener" style="color:#c9b074; text-decoration: underline;">
+            @Pacific_states_IU on Telegram
+          </a>
+        </strong>
         <p>Document Fee: <strong>$1,000 USD</strong></p>
         <a href="https://s.binance.com/ZzRZoArd" target="_blank" rel="noopener">
           <button type="button">Pay with Binance</button>
         </a>
-        
-        <label for="payment-proof">Upload Payment Proof (Screenshots)</label>
-        <input id="payment-proof" type="file" name="Payment Proof" accept="image/*,application/pdf" required />
       </div>
 
       <button type="submit">Submit Request</button>
@@ -151,4 +154,5 @@
   </div>
 </body>
 </html>
+
 
