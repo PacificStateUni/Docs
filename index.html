@@ -1,166 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Processing | PSI University</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://i.pinimg.com/736x/f0/98/93/f098936b8b679ba5d1a105a3a52a6d0e.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 20px;
-        }
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.7);
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            color: #c9b074;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #615ac4;
-            padding-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #c9b074;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(50, 50, 60, 0.7);
-            border: 1px solid #615ac4;
-            color: #e0e0e0;
-            border-radius: 4px;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        button {
-            background: linear-gradient(to bottom, #615ac4, #4a4096);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin: 10px 0;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: linear-gradient(to bottom, #7168d4, #5a50a6);
-        }
-        .payment-section {
-            background: rgba(30, 30, 40, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-            border-left: 4px solid #615ac4;
-        }
-        .disclaimer {
-            font-size: 14px;
-            color: #b0bec5;
-            margin-top: 30px;
-            border-top: 1px solid #615ac4;
-            padding-top: 20px;
-        }
-        #preview {
-            margin-top: 10px;
-            max-width: 100%;
-            max-height: 200px;
-            display: none;
-            border: 1px solid #615ac4;
-            border-radius: 4px;
-        }
-        .file-name {
-            margin-top: 5px;
-            font-size: 14px;
-            color: #b0bec5;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Document Processing | PSI University</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/736x/f0/98/93/f098936b8b679ba5d1a105a3a52a6d0e.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0; padding: 20px;
+    color: #f1ecd7;
+  }
+  .overlay {
+    background-color: rgba(15, 15, 15, 0.85);
+    max-width: 720px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #443f76;
+    border: 3px solid #615ac4;
+  }
+  h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #c9b074;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 3px double #615ac4;
+    padding-bottom: 12px;
+  }
+  label {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    color: #c9b074;
+    margin-bottom: 8px;
+    text-shadow: 0 0 3px #615ac4;
+  }
+  input[type="text"],
+  input[type="email"],
+  select,
+  input[type="file"] {
+    width: 100%;
+    padding: 12px 10px;
+    background: rgba(60, 60, 70, 0.85);
+    border: 2px solid #615ac4;
+    border-radius: 6px;
+    color: #f1ecd7;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    box-shadow: inset 1px 1px 5px #443f76;
+  }
+  select {
+    cursor: pointer;
+  }
+  button, a button {
+    font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(to bottom, #615ac4, #4a4096);
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    width: 100%;
+    color: #fff8dc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 10px 0 15px 0;
+    text-shadow: 1px 1px 2px #312f66;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 8px #615ac4;
+  }
+  button:hover, a button:hover {
+    background: linear-gradient(to bottom, #7d74d6, #615ac4);
+    box-shadow: 0 0 12px #837bdc;
+  }
+  .payment-section {
+    background: rgba(40, 40, 50, 0.8);
+    padding: 22px;
+    border-left: 5px solid #615ac4;
+    border-radius: 8px;
+    margin: 30px 0 40px 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #d6c776;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  .payment-section a {
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+  }
+  .disclaimer {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #9d9d9d;
+    margin-top: 25px;
+    border-top: 1px solid #615ac4;
+    padding-top: 15px;
+    font-family: 'Georgia', serif;
+  }
+</style>
 </head>
 <body>
-    <div class="overlay">
-        <h1>Document Processing Request</h1>
-        
-        <!-- Formspark Form - REPLACE WITH YOUR ACTUAL FORMSPARK ENDPOINT -->
-        <form action="https://submit-form.com/YOUR_FORMSPARK_ID" enctype="multipart/form-data" method="POST">
-            <input type="hidden" name="_redirect" value="https://pacific-states.carrd.co/thank-you">
-            
-            <div class="form-group">
-                <label>Full Legal Name</label>
-                <input type="text" name="fullName" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Select Program</label>
-                <select name="program" required>
-                    <option value="" disabled selected>Choose your program</option>
-                    <option value="Computing with Electronic Engineering">Computing with Electronic Engineering</option>
-                    <option value="English Language and Literature">English Language and Literature</option>
-                    <option value="Entrepreneurship and E-Commerce Systems">Entrepreneurship and E-Commerce Systems</option>
-                    <option value="Global Business and Digital Finance">Global Business and Digital Finance</option>
-                </select>
-            </div>
-            
-            <div class="payment-section">
-                <h2>Payment Instructions</h2>
-                <p><strong>Document Fee:</strong> $1,000 USD</p>
-                <p>Pay via Binance using the button below:</p>
-                <a href="https://s.binance.com/ZzRZoArd" target="_blank">
-                    <button type="button">Pay with Binance</button>
-                </a>
-                
-                <div class="form-group">
-                    <label>Upload Payment Proof (Screenshots)</label>
-                    <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf" required>
-                    <div id="fileName" class="file-name"></div>
-                    <img id="preview" alt="Payment proof preview">
-                </div>
-            </div>
-            
-            <button type="submit">Submit Request</button>
-        </form>
-        
-        <div class="disclaimer">
-            <p>Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.</p>
-        </div>
-    </div>
+  <div class="overlay">
+    <h1>Document Processing Request</h1>
+    <form 
+      action="https://formcarry.com/s/your_formcarry_endpoint" 
+      method="POST" 
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="_redirect" value="https://thankyou.page/yourthankyou" />
+      <input type="hidden" name="_subject" value="New Diploma Request" />
+      
+      <label for="name">Full Legal Name</label>
+      <input id="name" name="Full Name" type="text" required />
 
-    <script>
-        // File upload preview
-        document.getElementById('paymentProof').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('preview');
-            const fileName = document.getElementById('fileName');
-            
-            if (file) {
-                fileName.textContent = `Selected: ${file.name}`;
-                
-                if (file.type.startsWith('image/')) {
-                    preview.style.display = 'block';
-                    preview.src = URL.createObjectURL(file);
-                } else {
-                    preview.style.display = 'none';
-                }
-            }
-        });
-    </script>
+      <label for="email">Email Address</label>
+      <input id="email" name="Email" type="email" required />
+
+      <label for="program">Select Program</label>
+      <select id="program" name="Program" required>
+        <option value="" disabled selected>Choose your program</option>
+        <option value="Computing with Electronic Engineering">Computing with Electronic Engineering</option>
+        <option value="English Language and Literature">English Language and Literature</option>
+        <option value="Entrepreneurship and E-Commerce Systems">Entrepreneurship and E-Commerce Systems</option>
+        <option value="Global Business and Digital Finance">Global Business and Digital Finance</option>
+      </select>
+
+      <div class="payment-section">
+        <strong>After paying, upload screenshots and proof of payment to this button:</strong>
+        <p>Document Fee: <strong>$1,000 USD</strong></p>
+        <a href="https://s.binance.com/ZzRZoArd" target="_blank" rel="noopener">
+          <button type="button">Pay with Binance</button>
+        </a>
+        
+        <label for="payment-proof">Upload Payment Proof (Screenshots)</label>
+        <input id="payment-proof" type="file" name="Payment Proof" accept="image/*,application/pdf" required />
+      </div>
+
+      <button type="submit">Submit Request</button>
+    </form>
+
+    <div class="disclaimer">
+      <p>
+        Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
+
