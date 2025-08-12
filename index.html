@@ -75,19 +75,47 @@
             border-top: 1px solid #615ac4;
             padding-top: 20px;
         }
+        .telegram-option {
+            background: rgba(40, 40, 50, 0.8);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid #2AABEE;
+        }
+        .telegram-option a {
+            color: #2AABEE;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="overlay">
         <h1>Document Processing Request</h1>
         
-        <form action="https://formsubmit.co/ps.international.university@gmail.com" method="POST">
+        <form action="https://formsubmit.co/ps.international.university@gmail.com" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="New Diploma Request">
             <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
             
             <div class="form-group">
                 <label>Full Legal Name</label>
                 <input type="text" name="Full Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Student ID</label>
+                <input type="text" name="Student ID" required>
             </div>
             
             <div class="form-group">
@@ -109,14 +137,22 @@
             <div class="payment-section">
                 <h2>Payment Instructions</h2>
                 <p><strong>Document Fee:</strong> $1,000 USD</p>
-                <p>Pay via Binance using the button below:</p>
                 <a href="https://s.binance.com/ZzRZoArd" target="_blank">
                     <button type="button">Pay with Binance</button>
                 </a>
                 
                 <div class="form-group">
                     <label>Upload Payment Proof (Screenshots)</label>
-                    <input type="file" name="Payment Proof" accept="image/*,.pdf">
+                    <input type="file" id="paymentProof" name="Payment Proof" accept="image/*,.pdf">
+                    <img id="preview" alt="Payment proof preview">
+                </div>
+                
+                <div class="telegram-option">
+                    <p>Alternatively, send your payment proof via Telegram:</p>
+                    <a href="https://t.me/Pacific_states_IU" target="_blank">
+                        <img src="https://telegram.org/img/t_logo.png" width="24" style="vertical-align: middle;">
+                        @Pacific_states_IU
+                    </a>
                 </div>
             </div>
             
@@ -127,5 +163,20 @@
             <p>Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.</p>
         </div>
     </div>
+
+    <script>
+        // Simple image preview for payment proof
+        document.getElementById('paymentProof').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('preview');
+            
+            if (file && file.type.match('image.*')) {
+                preview.style.display = 'block';
+                preview.src = URL.createObjectURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
