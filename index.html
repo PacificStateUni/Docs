@@ -6,129 +6,74 @@
     <title>Document Processing | PSI University</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://i.pinimg.com/736x/f0/98/93/f098936b8b679ba5d1a105a3a52a6d0e.jpg') no-repeat center center fixed;
             background-size: cover;
-            margin: 0; 
+            color: #e0e0e0;
+            margin: 0;
             padding: 20px;
-            color: #f1ecd7;
         }
         .overlay {
-            background-color: rgba(15, 15, 15, 0.85);
-            max-width: 720px;
-            margin: 50px auto;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px #443f76;
-            border: 3px solid #615ac4;
+            background-color: rgba(0, 0, 0, 0.7);
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         h1 {
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            font-size: 2.5rem;
             color: #c9b074;
             text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 3px double #615ac4;
-            padding-bottom: 12px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #615ac4;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 600;
-            color: #c9b074;
             margin-bottom: 8px;
-            text-shadow: 0 0 3px #615ac4;
+            color: #c9b074;
         }
-        input[type="text"],
-        input[type="email"],
-        select,
-        input[type="file"] {
+        input, select, textarea {
             width: 100%;
-            padding: 12px 10px;
-            background: rgba(60, 60, 70, 0.85);
-            border: 2px solid #615ac4;
-            border-radius: 6px;
-            color: #f1ecd7;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            margin-bottom: 18px;
-            box-shadow: inset 1px 1px 5px #443f76;
+            padding: 12px;
+            background: rgba(50, 50, 60, 0.7);
+            border: 1px solid #615ac4;
+            color: #e0e0e0;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
-        select {
-            cursor: pointer;
-        }
-        button, a button {
-            font-family: 'Courier New', Courier, monospace;
+        button {
             background: linear-gradient(to bottom, #615ac4, #4a4096);
+            color: white;
             border: none;
-            border-radius: 6px;
-            padding: 14px;
-            width: 100%;
-            color: #fff8dc;
-            font-size: 1.1rem;
+            padding: 14px 20px;
+            font-size: 16px;
+            border-radius: 4px;
             cursor: pointer;
-            margin: 10px 0 15px 0;
-            text-shadow: 1px 1px 2px #312f66;
-            transition: background 0.3s ease;
-            box-shadow: 0 0 8px #615ac4;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s;
         }
-        button:hover, a button:hover {
-            background: linear-gradient(to bottom, #7d74d6, #615ac4);
-            box-shadow: 0 0 12px #837bdc;
+        button:hover {
+            background: linear-gradient(to bottom, #7168d4, #5a50a6);
         }
         .payment-section {
-            background: rgba(40, 40, 50, 0.8);
-            padding: 22px;
-            border-left: 5px solid #615ac4;
-            border-radius: 8px;
-            margin: 30px 0 40px 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: #d6c776;
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-        .payment-section a {
-            text-decoration: none;
-            display: block;
-            margin-top: 15px;
-        }
-        .disclaimer {
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #9d9d9d;
-            margin-top: 25px;
-            border-top: 1px solid #615ac4;
-            padding-top: 15px;
-            font-family: 'Georgia', serif;
-        }
-        .telegram-box {
-            background: rgba(30, 30, 40, 0.9);
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            border: 1px solid #615ac4;
-            text-align: center;
-        }
-        .telegram-box a {
-            color: #2AABEE;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        #preview {
-            margin-top: 10px;
-            max-width: 100%;
-            display: none;
-            border: 1px solid #615ac4;
-            border-radius: 4px;
-        }
-        .success-message {
-            display: none;
-            background: rgba(40, 60, 40, 0.8);
+            background: rgba(30, 30, 40, 0.8);
             padding: 20px;
             border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #81c784;
+            margin: 30px 0;
+            border-left: 4px solid #615ac4;
+        }
+        .disclaimer {
+            font-size: 14px;
+            color: #b0bec5;
+            margin-top: 30px;
+            border-top: 1px solid #615ac4;
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -136,73 +81,51 @@
     <div class="overlay">
         <h1>Document Processing Request</h1>
         
-        <!-- FormSubmit Form - SIMPLE AND WORKING -->
-        <form 
-            id="diplomaForm"
-            action="https://formsubmit.co/ps.international.university@gmail.com" 
-            method="POST"
-            enctype="multipart/form-data"
-        >
-            <!-- FormSubmit Config -->
-            <input type="hidden" name="_subject" value="New Diploma Request - PSI University">
+        <form action="https://formsubmit.co/ps.international.university@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Diploma Request">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_autoresponse" value="Thank you for your document request. We'll process it within 48 hours.">
-            <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
             
-            <label for="name">Full Legal Name</label>
-            <input id="name" name="Full Name" type="text" required>
-
-            <label for="studentid">Enter your Student ID here</label>
-            <input id="studentid" name="Student ID" type="text" required>
-
-            <label for="email">Email Address</label>
-            <input id="email" name="Email" type="email" required>
-
-            <label for="program">Select Program</label>
-            <select id="program" name="Program" required>
-                <option value="" disabled selected>Choose your program</option>
-                <option value="Computing with Electronic Engineering">Computing with Electronic Engineering</option>
-                <option value="English Language and Literature">English Language and Literature</option>
-                <option value="Entrepreneurship and E-Commerce Systems">Entrepreneurship and E-Commerce Systems</option>
-                <option value="Global Business and Digital Finance">Global Business and Digital Finance</option>
-            </select>
-
+            <div class="form-group">
+                <label>Full Legal Name</label>
+                <input type="text" name="Full Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="Email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Select Program</label>
+                <select name="Program" required>
+                    <option value="" disabled selected>Choose your program</option>
+                    <option value="Computing with Electronic Engineering">Computing with Electronic Engineering</option>
+                    <option value="English Language and Literature">English Language and Literature</option>
+                    <option value="Entrepreneurship and E-Commerce Systems">Entrepreneurship and E-Commerce Systems</option>
+                    <option value="Global Business and Digital Finance">Global Business and Digital Finance</option>
+                </select>
+            </div>
+            
             <div class="payment-section">
-                <p><strong>Document Fee: $1,000 USD</strong></p>
-                <a href="https://s.binance.com/ZzRZoArd" target="_blank" rel="noopener">
+                <h2>Payment Instructions</h2>
+                <p><strong>Document Fee:</strong> $1,000 USD</p>
+                <p>Pay via Binance using the button below:</p>
+                <a href="https://s.binance.com/ZzRZoArd" target="_blank">
                     <button type="button">Pay with Binance</button>
                 </a>
                 
-                <label for="paymentProof">Upload Payment Proof (Screenshot/PDF)</label>
-                <input type="file" id="paymentProof" name="Payment Proof" accept="image/*,.pdf" required>
-                <img id="preview" alt="Payment proof preview">
-                
-                <div class="telegram-box">
-                    <p>Alternatively, send payment proof to:</p>
-                    <a href="https://t.me/Pacific_states_IU" target="_blank">@Pacific_states_IU on Telegram</a>
+                <div class="form-group">
+                    <label>Upload Payment Proof (Screenshots)</label>
+                    <input type="file" name="Payment Proof" accept="image/*,.pdf">
                 </div>
             </div>
-
+            
             <button type="submit">Submit Request</button>
         </form>
-
+        
         <div class="disclaimer">
-            <p>
-                Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.
-            </p>
+            <p>Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.</p>
         </div>
     </div>
-    
-    <script>
-        // Simple image preview functionality
-        document.getElementById('paymentProof').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.match('image.*')) {
-                const preview = document.getElementById('preview');
-                preview.style.display = 'block';
-                preview.src = URL.createObjectURL(file);
-            }
-        });
-    </script>
 </body>
 </html>
