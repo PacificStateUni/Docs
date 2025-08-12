@@ -75,29 +75,31 @@
             border-top: 1px solid #615ac4;
             padding-top: 20px;
         }
+        #preview {
+            margin-top: 10px;
+            max-width: 100%;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="overlay">
         <h1>Document Processing Request</h1>
         
-        <form action="https://formsubmit.co/ps.international.university@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="New Diploma Request">
-            <input type="hidden" name="_template" value="table">
-            
+        <form id="diplomaForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Full Legal Name</label>
-                <input type="text" name="Full Name" required>
+                <input type="text" name="full_name" required>
             </div>
             
             <div class="form-group">
                 <label>Email Address</label>
-                <input type="email" name="Email" required>
+                <input type="email" name="email" required>
             </div>
             
             <div class="form-group">
                 <label>Select Program</label>
-                <select name="Program" required>
+                <select name="program" required>
                     <option value="" disabled selected>Choose your program</option>
                     <option value="Computing with Electronic Engineering">Computing with Electronic Engineering</option>
                     <option value="English Language and Literature">English Language and Literature</option>
@@ -116,7 +118,8 @@
                 
                 <div class="form-group">
                     <label>Upload Payment Proof (Screenshots)</label>
-                    <input type="file" name="Payment Proof" accept="image/*,.pdf">
+                    <input type="file" id="paymentProof" name="payment_proof" accept="image/*,.pdf" required>
+                    <img id="preview" alt="Payment proof preview">
                 </div>
             </div>
             
@@ -127,5 +130,39 @@
             <p>Documents will be emailed within 48 hours after payment verification. By submitting this form, you confirm all information is accurate.</p>
         </div>
     </div>
+
+    <script>
+        // Image preview functionality
+        document.getElementById('paymentProof').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const preview = document.getElementById('preview');
+                preview.style.display = 'block';
+                preview.src = URL.createObjectURL(file);
+            }
+        });
+
+        // Form submission handling
+        document.getElementById('diplomaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Create email body
+            const formData = new FormData(this);
+            let emailBody = `New Diploma Request:\n\n`;
+            emailBody += `Name: ${formData.get('full_name')}\n`;
+            emailBody += `Email: ${formData.get('email')}\n`;
+            emailBody += `Program: ${formData.get('program')}\n\n`;
+            emailBody += `Payment proof attached (see filename: ${formData.get('payment_proof').name})`;
+            
+            // Create mailto link with attachment (note: browser support varies)
+            const mailtoLink = `mailto:ps.international.university@gmail.com?subject=Diploma Request - ${formData.get('full_name')}&body=${encodeURIComponent(emailBody)}`;
+            
+            // For better reliability, we'll instruct the user to attach manually
+            alert('Please send an email to ps.international.university@gmail.com with:\n\n1. Your full name\n2. Program name\n3. Payment proof attached\n\nWe will process your request within 48 hours.');
+            
+            // Alternative: Open user's email client (less reliable)
+            // window.location.href = mailtoLink;
+        });
+    </script>
 </body>
 </html>
