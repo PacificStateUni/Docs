@@ -130,6 +130,14 @@
             margin: 20px 0;
             border-left: 5px solid #81c784;
         }
+        .error-message {
+            display: none;
+            background: rgba(80, 30, 30, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #c78181;
+        }
     </style>
 </head>
 <body>
@@ -139,13 +147,14 @@
         <!-- Formspree Pro Form (using your paid account) -->
         <form 
             id="diplomaForm"
-            action="https://formspree.io/f/xrbljqdp" 
+            action="https://formspree.io/f/xbjndqya" 
             method="POST"
-            
+            enctype="multipart/form-data"
         >
             <input type="hidden" name="_subject" value="New Diploma Request - PSI University">
             <input type="hidden" name="_replyto" value="ps.international.university@gmail.com">
             <input type="hidden" name="_cc" value="ps.international.university@gmail.com">
+            <input type="hidden" name="_language" value="en">
             
             <label for="name">Full Legal Name</label>
             <input id="name" name="Full Name" type="text" required>
@@ -176,17 +185,22 @@
                 <img id="preview" alt="Payment proof preview">
                 
                 <div class="telegram-box">
-                    <p>Also, send payment proof to:</p>
+                    <p>Alternatively, send payment proof to:</p>
                     <a href="https://t.me/Pacific_states_IU" target="_blank">@Pacific_states_IU on Telegram</a>
                 </div>
             </div>
 
-            <button type="submit">Submit Request</button>
+            <button type="submit" id="submitButton">Submit Request</button>
         </form>
 
         <div id="successMessage" class="success-message">
             <h3>✓ Request Submitted Successfully</h3>
             <p>We've received your documents request. You'll receive confirmation at <span id="userEmail"></span> within 24 hours.</p>
+        </div>
+
+        <div id="errorMessage" class="error-message">
+            <h3>✗ Submission Error</h3>
+            <p>There was a problem submitting your form. Please email us directly at <a href="mailto:ps.international.university@gmail.com">ps.international.university@gmail.com</a> with your details and payment proof.</p>
         </div>
 
         <div class="disclaimer">
@@ -213,6 +227,12 @@
             
             const form = e.target;
             const formData = new FormData(form);
+            const submitButton = document.getElementById('submitButton');
+            const email = formData.get('Email');
+            
+            // Disable submit button to prevent multiple submissions
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
             
             try {
                 const response = await fetch(form.action, {
@@ -225,20 +245,28 @@
                 
                 if (response.ok) {
                     // Show success message
-                    document.getElementById('userEmail').textContent = formData.get('Email');
+                    document.getElementById('userEmail').textContent = email;
                     form.style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
                     
                     // Scroll to success message
                     document.getElementById('successMessage').scrollIntoView({
                         behavior: 'smooth'
                     });
                 } else {
-                    throw new Error('Form submission failed');
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Form submission failed');
                 }
             } catch (error) {
-                alert('There was a problem submitting your form. Please email us directly at ps.international.university@gmail.com with your details and payment proof.');
                 console.error('Form submission error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Request';
             }
         });
     </script>
