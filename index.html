@@ -100,6 +100,19 @@
     padding-top: 15px;
     font-family: 'Georgia', serif;
   }
+  .telegram-box {
+    background: rgba(30, 30, 40, 0.9);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 1px solid #615ac4;
+    text-align: center;
+  }
+  .telegram-box a {
+    color: #2AABEE;
+    font-weight: bold;
+    text-decoration: none;
+  }
 </style>
 </head>
 <body>
@@ -111,6 +124,8 @@
     >
       <input type="hidden" name="_subject" value="New Diploma Request" />
       <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://pacific-states.carrd.co/#thank-you" />
       
       <label for="name">Full Legal Name</label>
       <input id="name" name="Full Name" type="text" required />
@@ -131,16 +146,15 @@
       </select>
 
       <div class="payment-section">
-        <strong>
-          After payment, send screenshots and proof of payment to <br />
-          <a href="https://t.me/Pacific_states_IU" target="_blank" rel="noopener" style="color:#c9b074; text-decoration: underline;">
-            @Pacific_states_IU on Telegram
-          </a>
-        </strong>
-        <p>Document Fee: <strong>$1,000 USD</strong></p>
+        <p><strong>Document Fee: $1,000 USD</strong></p>
         <a href="https://s.binance.com/ZzRZoArd" target="_blank" rel="noopener">
           <button type="button">Pay with Binance</button>
         </a>
+        
+        <div class="telegram-box">
+          <p>After payment, send payment proof to:</p>
+          <a href="https://t.me/Pacific_states_IU" target="_blank">@Pacific_states_IU on Telegram</a>
+        </div>
       </div>
 
       <button type="submit">Submit Request</button>
@@ -152,6 +166,14 @@
       </p>
     </div>
   </div>
+  
+  <script>
+    // Form submission handler
+    document.querySelector('form').addEventListener('submit', function() {
+      // You can add confirmation logic here if needed
+      console.log('Form submitted to FormSubmit');
+    });
+  </script>
 </body>
 </html>
 
